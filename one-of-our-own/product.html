@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethan Nwaneri — One of Our Own</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-display { font-family: 'Bebas Neue', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #00D65F 0%, #00FF87 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-gray-900/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <img src="https://raw.githubusercontent.com/marthollands-creator/one-of-our-own/main/assets/logo.png" alt="Excuse To Football" class="h-10">
+                    <span class="font-semibold text-gray-400">|</span>
+                    <span class="font-semibold">One of Our Own</span>
+                </div>
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white transition">Home</a>
+                    <a href="#" class="text-green-400">Cards</a>
+                    <button onclick="showCart()" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg font-medium transition">
+                        View Cart (<span id="cart-count">0</span>)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Section -->
+    <section class="pt-32 pb-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Card Image -->
+                <div class="relative">
+                    <div class="aspect-square bg-gradient-to-br from-green-900 to-gray-900 rounded-2xl border border-gray-700 flex items-center justify-center p-8">
+                        <div class="text-center">
+                            <div class="text-9xl mb-4">⚽</div>
+                            <div class="font-display text-5xl mb-2">ETHAN NWANERI</div>
+                            <div class="text-green-400 text-xl">The Hale End Prodigy</div>
+                            <div class="mt-6 text-gray-500 text-lg">01/25</div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 bg-green-600 text-white px-4 py-2 rounded-lg font-bold">
+                        AVAILABLE
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div>
+                    <div class="mb-4">
+                        <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Batch 001</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full text-sm ml-2">NFC Enabled</span>
+                    </div>
+                    
+                    <h1 class="font-display text-5xl mb-2">ETHAN NWANERI</h1>
+                    <p class="text-green-400 text-lg mb-6">The Hale End Prodigy</p>
+                    
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="text-4xl font-bold">£30</span>
+                        <span class="text-gray-500 line-through">£45</span>
+                        <span class="bg-green-600 text-white px-2 py-1 rounded text-sm">33% OFF</span>
+                    </div>
+
+                    <p class="text-gray-400 mb-8">
+                        Limited edition NFC collectible card featuring original artwork and embedded AI agent. 
+                        Tap your phone to unlock exclusive scouting analysis and personalized coaching for young players.
+                    </p>
+
+                    <!-- Features -->
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-400">✓</span>
+                            <span class="text-sm">Original Artwork</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-400">✓</span>
+                            <span class="text-sm">NFC Enabled</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-400">✓</span>
+                            <span class="text-sm">AI Agent Access</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-400">✓</span>
+                            <span class="text-sm">Limited /25</span>
+                        </div>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="mb-6">
+                        <label class="block text-sm text-gray-400 mb-2">Quantity</label>
+                        <div class="flex items-center gap-4">
+                            <button class="w-10 h-10 border border-gray-600 rounded-lg hover:border-gray-400">-</button>
+                            <span class="text-xl font-bold">1</span>
+                            <button class="w-10 h-10 border border-gray-600 rounded-lg hover:border-gray-400">+</button>
+                            <span class="text-gray-400">24 remaining</span>
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart -->
+                    <button onclick="addToCart()" class="w-full bg-green-500 hover:bg-green-600 py-4 rounded-xl font-bold text-lg transition mb-4">
+                        Add to Cart — £30
+                    </button>
+
+                    <p class="text-center text-gray-500 text-sm">
+                        Free UK shipping • Secure checkout
+                    </p>
+                </div>
+            </div>
+
+            <!-- Cart Modal -->
+            <div id="cart-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+                <div class="bg-gray-800 rounded-2xl p-6 max-w-md w-full">
+                    <h3 class="font-display text-2xl mb-4">Your Cart</h3>
+                    <div id="cart-items" class="mb-4"></div>
+                    <div class="border-t border-gray-700 pt-4 mb-4">
+                        <div class="flex justify-between text-xl font-bold">
+                            <span>Total:</span>
+                            <span id="cart-total">£0</span>
+                        </div>
+                    </div>
+                    <button onclick="checkout()" class="w-full bg-green-500 hover:bg-green-600 py-3 rounded-xl font-bold mb-2">
+                        Checkout
+                    </button>
+                    <button onclick="closeCart()" class="w-full border border-gray-600 py-3 rounded-xl">
+                        Continue Shopping
+                    </button>
+                </div>
+            </div>
+
+            <!-- Details Tabs -->
+            <div class="mt-16">
+                <div class="border-b border-gray-700">
+                    <nav class="flex gap-8">
+                        <button class="border-b-2 border-green-500 pb-4 text-green-400">Details</button>
+                        <button class="border-b-2 border-transparent pb-4 text-gray-400 hover:text-white">AI Agent</button>
+                        <button class="border-b-2 border-transparent pb-4 text-gray-400 hover:text-white">Shipping</button>
+                    </nav>
+                </div>
+                <div class="py-8">
+                    <h3 class="font-bold text-xl mb-4">Player Information</h3>
+                    <div class="grid md:grid-cols-2 gap-6 text-gray-400">
+                        <div>
+                            <p><span class="text-white">Full Name:</span> Ethan Chidiebere Nwaneri</p>
+                            <p><span class="text-white">Born:</span> 21 March 2007, London</p>
+                            <p><span class="text-white">Position:</span> Attacking Midfield / Right Wing</p>
+                        </div>
+                        <div>
+                            <p><span class="text-white">Academy:</span> Arsenal (Hale End)</p>
+                            <p><span class="text-white">Current Club:</span> Olympique Marseille (loan)</p>
+                            <p><span class="text-white">International:</span> England U21</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto text-center text-gray-500 text-sm">
+            © 2026 Excuse to Football. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+        
+        function addToCart() {
+            const product = { id: 'nwaneri-001', name: 'Ethan Nwaneri', price: 30, qty: 1 };
+            const existing = cart.find(item => item.id === product.id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push(product);
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showCart();
+        }
+        
+        function showCart() {
+            const modal = document.getElementById('cart-modal');
+            const items = document.getElementById('cart-items');
+            const total = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                items.innerHTML = '<p class="text-gray-400 text-center py-4">Your cart is empty</p>';
+                total.textContent = '£0';
+            } else {
+                items.innerHTML = cart.map(item => `
+                    <div class="flex justify-between items-center py-2 border-b border-gray-700">
+                        <div>
+                            <p class="font-bold">${item.name}</p>
+                            <p class="text-gray-400 text-sm">£${item.price} × ${item.qty}</p>
+                        </div>
+                        <p class="font-bold">£${item.price * item.qty}</p>
+                    </div>
+                `).join('');
+                const sum = cart.reduce((total, item) => total + (item.price * item.qty), 0);
+                total.textContent = '£' + sum;
+            }
+            modal.classList.remove('hidden');
+        }
+        
+        function closeCart() {
+            document.getElementById('cart-modal').classList.add('hidden');
+        }
+        
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            // Redirect to Stripe payment
+            window.location.href = 'https://buy.stripe.com/5kQcN53umbov2Q7daU9MY00';
+        }
+        
+        // Cart button in nav
+        document.querySelector('button:has-text("View Cart")').addEventListener('click', showCart);
+        
+        // Initialize
+        updateCartCount();
+    </script>
+</body>
+</html>
