@@ -37,8 +37,8 @@
                     <a href="#cards" class="text-gray-300 hover:text-white transition">Cards</a>
                     <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
                     <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
-                    <button class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg font-medium transition">
-                        Shop Now
+                    <button onclick="showCart()" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg font-medium transition">
+                        Shop Now (<span id="cart-count">0</span>)
                     </button>
                 </div>
             </div>
@@ -127,6 +127,9 @@
                         <span class="text-gray-500 line-through">£45</span>
                         <span class="bg-green-600 text-white px-2 py-1 rounded text-sm">33% OFF</span>
                     </div>
+                    <a href="product.html" class="inline-block mt-4 bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl font-bold transition">
+                        Buy Now
+                    </a>
                 </div>
             </div>
         </div>
@@ -203,5 +206,64 @@
             </div>
         </div>
     </footer>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-2xl p-6 max-w-md w-full">
+            <h3 class="font-display text-2xl mb-4">Your Cart</h3>
+            <div id="cart-items" class="mb-4"></div>
+            <div class="border-t border-gray-700 pt-4 mb-4">
+                <div class="flex justify-between text-xl font-bold">
+                    <span>Total:</span>
+                    <span id="cart-total">£0</span>
+                </div>
+            </div>
+            <a href="product.html" class="w-full block text-center bg-green-500 hover:bg-green-600 py-3 rounded-xl font-bold mb-2">
+                Go to Checkout
+            </a>
+            <button onclick="closeCart()" class="w-full border border-gray-600 py-3 rounded-xl">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').textContent = count;
+        }
+        
+        function showCart() {
+            const modal = document.getElementById('cart-modal');
+            const items = document.getElementById('cart-items');
+            const total = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                items.innerHTML = '<p class="text-gray-400 text-center py-4">Your cart is empty</p>';
+                total.textContent = '£0';
+            } else {
+                items.innerHTML = cart.map(item => `
+                    <div class="flex justify-between items-center py-2 border-b border-gray-700">
+                        <div>
+                            <p class="font-bold">${item.name}</p>
+                            <p class="text-gray-400 text-sm">£${item.price} × ${item.qty}</p>
+                        </div>
+                        <p class="font-bold">£${item.price * item.qty}</p>
+                    </div>
+                `).join('');
+                const sum = cart.reduce((total, item) => total + (item.price * item.qty), 0);
+                total.textContent = '£' + sum;
+            }
+            modal.classList.remove('hidden');
+        }
+        
+        function closeCart() {
+            document.getElementById('cart-modal').classList.add('hidden');
+        }
+        
+        updateCartCount();
+    </script>
 </body>
 </html>
