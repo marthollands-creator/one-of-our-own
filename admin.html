@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — One of Our Own</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" style="font-family: 'Inter', sans-serif;">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Sidebar -->
+    <aside class="fixed left-0 top-0 h-full w-64 bg-gray-800 border-r border-gray-700 p-6">
+        <div class="mb-8">
+            <span class="font-display text-2xl">4xO</span>
+            <span class="text-gray-400 text-sm block">Admin Panel</span>
+        </div>
+        
+        <nav class="space-y-2">
+            <a href="#" class="flex items-center gap-3 px-4 py-3 bg-green-500/20 text-green-400 rounded-lg">
+                <span>📊</span> Dashboard
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-700 rounded-lg transition">
+                <span>🎴</span> Products
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-700 rounded-lg transition">
+                <span>📦</span> Orders
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-700 rounded-lg transition">
+                <span>🤖</span> AI Agents
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-700 rounded-lg transition">
+                <span>👥</span> Customers
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-700 rounded-lg transition">
+                <span>📈</span> Analytics
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-700 rounded-lg transition">
+                <span>⚙️</span> Settings
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 p-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold">Dashboard</h1>
+                <p class="text-gray-400">Welcome back, Martin</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-gray-400">Last login: Today, 10:30 AM</span>
+                <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center font-bold">M</div>
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-4 gap-6 mb-8">
+            <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div class="text-gray-400 text-sm mb-2">Total Revenue</div>
+                <div class="text-3xl font-bold text-green-400">£750</div>
+                <div class="text-green-400 text-sm">25 cards sold</div>
+            </div>
+            <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div class="text-gray-400 text-sm mb-2">This Month</div>
+                <div class="text-3xl font-bold">£750</div>
+                <div class="text-gray-400 text-sm">100% of target</div>
+            </div>
+            <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div class="text-gray-400 text-sm mb-2">Active Agents</div>
+                <div class="text-3xl font-bold">1</div>
+                <div class="text-gray-400 text-sm">1 AI running</div>
+            </div>
+            <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <div class="text-gray-400 text-sm mb-2">Stock Remaining</div>
+                <div class="text-3xl font-bold text-orange-400">0</div>
+                <div class="text-gray-400 text-sm">Batch 001 sold out</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="grid grid-cols-3 gap-6 mb-8">
+            <a href="#" class="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-green-500 transition cursor-pointer">
+                <div class="text-2xl mb-2">➕</div>
+                <div class="font-bold">Add New Card</div>
+                <div class="text-gray-400 text-sm">Create new player card</div>
+            </a>
+            <a href="#" class="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-green-500 transition cursor-pointer">
+                <div class="text-2xl mb-2">🎨</div>
+                <div class="font-bold">Update Artwork</div>
+                <div class="text-gray-400 text-sm">Edit card designs</div>
+            </a>
+            <a href="#" class="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-green-500 transition cursor-pointer">
+                <div class="text-2xl mb-2">🤖</div>
+                <div class="font-bold">Manage AI Agents</div>
+                <div class="text-gray-400 text-sm">Edit bot prompts</div>
+            </a>
+        </div>
+
+        <!-- Recent Orders -->
+        <div class="bg-gray-800 rounded-xl border border-gray-700">
+            <div class="p-6 border-b border-gray-700">
+                <h2 class="font-bold text-xl">Recent Orders</h2>
+            </div>
+            <div class="p-6">
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-left text-gray-400 text-sm">
+                            <th class="pb-4">Order ID</th>
+                            <th class="pb-4">Customer</th>
+                            <th class="pb-4">Product</th>
+                            <th class="pb-4">Serial</th>
+                            <th class="pb-4">Status</th>
+                            <th class="pb-4">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-t border-gray-700">
+                            <td class="py-4">#001</td>
+                            <td>John D.</td>
+                            <td>Nwaneri</td>
+                            <td>01/25</td>
+                            <td><span class="bg-green-600/20 text-green-400 px-2 py-1 rounded text-xs">Shipped</span></td>
+                            <td>Mar 10</td>
+                        </tr>
+                        <tr class="border-t border-gray-700">
+                            <td class="py-4">#002</td>
+                            <td>Sarah M.</td>
+                            <td>Nwaneri</td>
+                            <td>02/25</td>
+                            <td><span class="bg-green-600/20 text-green-400 px-2 py-1 rounded text-xs">Shipped</span></td>
+                            <td>Mar 10</td>
+                        </tr>
+                        <tr class="border-t border-gray-700">
+                            <td class="py-4">#003</td>
+                            <td>Mike R.</td>
+                            <td>Nwaneri</td>
+                            <td>03/25</td>
+                            <td><span class="bg-yellow-600/20 text-yellow-400 px-2 py-1 rounded text-xs">Processing</span></td>
+                            <td>Mar 11</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
