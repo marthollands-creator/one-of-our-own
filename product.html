@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .shimmer {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.1) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 100% 0; }
+            100% { background-position: 0 0; }
+        }
+        .tap-visualizer {
+            position: relative;
+            display: inline-block;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethan Nwaneri — One of Our Own</title>
+    <title>Ethan Nwaneri Limited Edition Card - One of Our Own</title>
+    <meta name="description" content="Limited edition NFC trading card with AI scout agent." />
+    <meta property="og:title" content="Ethan Nwaneri Limited Edition Card - One of Our Own" />
+    <meta property="og:description" content="Limited edition NFC trading card with AI scout agent." />
+    <meta property="og:type" content="product" />
+    <meta property="og:image" content="/assets/card-image.jpg" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Ethan Nwaneri Limited Edition Card - One of Our Own" />
+    <meta property="twitter:description" content="Limited edition NFC trading card with AI scout agent." />
+    <meta property="twitter:image" content="/assets/card-image.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+    .fade-up {
+        animation: fadeUp 0.6s;
+    }
+    @keyframes fadeUp {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .fade {
+        animation: fadeEffect 0.5s;
+    }
+    @keyframes fadeEffect {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .fade {
+        animation: fadeEffect 0.5s;
+    }
+    @keyframes fadeEffect {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
         body { font-family: 'Inter', sans-serif; }
         .font-display { font-family: 'Bebas Neue', sans-serif; }
         .gradient-text {
@@ -18,8 +71,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen">
-    <!-- Navigation -->
+<body class="bg-gray-900 text-white min-h-screen" style="opacity: 0; transition: opacity 1s;" onload="document.body.style.opacity = 1;">
     <nav class="fixed w-full z-50 bg-gray-900/90 backdrop-blur-md border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -30,8 +82,9 @@
                 </div>
                 <div class="flex items-center space-x-8">
                     <a href="index.html" class="text-gray-300 hover:text-white transition">Home</a>
-                    <a href="#" class="text-green-400">Cards</a>
-                    <button onclick="showCart()" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg font-medium transition">
+                    <a href="product.html" class="text-green-400">Cards</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white transition">About</a>
+                    <button onclick="showCart()" class="bg-green-500 hover:bg-green-600 hover:shadow-xl transition-shadow transform active:scale-95 py-4 rounded-xl font-bold text-lg mb-4 shadow-lg">
                         View Cart (<span id="cart-count">0</span>)
                     </button>
                 </div>
@@ -39,18 +92,18 @@
         </div>
     </nav>
 
-    <!-- Product Section -->
     <section class="pt-32 pb-20 px-4">
         <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Card Image -->
-                <div class="relative">
-                    <div class="aspect-square bg-gradient-to-br from-green-900 to-gray-900 rounded-2xl border border-gray-700 flex items-center justify-center p-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-12">
+                <div class="relative bg-gray-800 p-4 rounded-lg shadow-lg">
+                    <div class="aspect-square bg-gradient-to-br from-green-900 to-gray-900 rounded-2xl border border-gray-700 flex items-center justify-center p-8 shadow-lg fade-up hover:shadow-2xl transition-transform transform hover:scale-105" data-tilt data-tilt-glare data-tilt-max-glare="0.5">
                         <div class="text-center">
-                            <div class="text-9xl mb-4">⚽</div>
-                            <div class="font-display text-5xl mb-2">ETHAN NWANERI</div>
+                            <img src="/assets/player-photo.jpg" alt="Player Photo" class="rounded-lg border-4 border-green-500 shadow-lg mb-4">
+                            <img src="/assets/card-image.jpg" alt="Card Placeholder" class="rounded-lg border-4 border-green-500 shadow-lg mb-4 w-3/4 sm:w-full">
+                            <div class="font-display text-4xl sm:text-5xl mb-2">ETHAN NWANERI</div>
                             <div class="text-green-400 text-xl">The Hale End Prodigy</div>
                             <div class="mt-6 text-gray-500 text-lg">01/25</div>
+                            <span class="text-gray-400 tap-visualizer animate-pulse">24 remaining</span>
                         </div>
                     </div>
                     <div class="absolute -bottom-4 -right-4 bg-green-600 text-white px-4 py-2 rounded-lg font-bold">
@@ -58,15 +111,14 @@
                     </div>
                 </div>
 
-                <!-- Product Details -->
                 <div>
                     <div class="mb-4">
                         <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Batch 001</span>
                         <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full text-sm ml-2">NFC Enabled</span>
                     </div>
                     
-                    <h1 class="font-display text-5xl mb-2">ETHAN NWANERI</h1>
-                    <p class="text-green-400 text-lg mb-6">The Hale End Prodigy</p>
+                    <h1 class="font-display text-4xl sm:text-5xl mb-2">ETHAN NWANERI</h1>
+                    <p class="text-green-400 text-base sm:text-lg mb-6">The Hale End Pro</p>
                     
                     <div class="flex items-center gap-4 mb-6">
                         <span class="text-4xl font-bold">£30</span>
@@ -74,13 +126,12 @@
                         <span class="bg-green-600 text-white px-2 py-1 rounded text-sm">33% OFF</span>
                     </div>
 
-                    <p class="text-gray-400 mb-8">
+                    <p class="text-gray-400 mb-6 sm:mb-8">
                         Limited edition NFC collectible card featuring original artwork and embedded AI agent. 
                         Tap your phone to unlock exclusive scouting analysis and personalized coaching for young players.
                     </p>
 
-                    <!-- Features -->
-                    <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="grid grid-cols-2 gap-6 mb-10">
                         <div class="flex items-center gap-2">
                             <span class="text-green-400">✓</span>
                             <span class="text-sm">Original Artwork</span>
@@ -99,20 +150,39 @@
                         </div>
                     </div>
 
-                    <!-- Quantity -->
-                    <div class="mb-6">
+                    <!-- Tap to Unlock Visual -->
+                    <div class="mt-8 p-6 bg-gradient-to-r from-green-900/50 to-gray-800 rounded-xl border border-green-500/30">
+                        <div class="flex items-center justify-center gap-6">
+                            <div class="text-center">
+                                <div class="text-4xl mb-2">📱</div>
+                                <p class="text-xs text-gray-400">Tap</p>
+                            </div>
+                            <div class="text-green-400 animate-pulse">→</div>
+                            <div class="text-center">
+                                <div class="text-4xl mb-2">💳</div>
+                                <p class="text-xs text-gray-400">Card</p>
+                            </div>
+                            <div class="text-green-400 animate-pulse">→</div>
+                            <div class="text-center">
+                                <div class="text-4xl mb-2">🤖</div>
+                                <p class="text-xs text-gray-400">AI Scout</p>
+                            </div>
+                        </div>
+                        <p class="text-center text-green-400 text-sm mt-4 font-medium">Tap your card to unlock the AI agent</p>
+                    </div>
+
+                    <div class="mb-8">
                         <label class="block text-sm text-gray-400 mb-2">Quantity</label>
                         <div class="flex items-center gap-4">
-                            <button class="w-10 h-10 border border-gray-600 rounded-lg hover:border-gray-400">-</button>
-                            <span class="text-xl font-bold">1</span>
-                            <button class="w-10 h-10 border border-gray-600 rounded-lg hover:border-gray-400">+</button>
+                            <button onclick="updateQty(-1)" class="w-10 h-10 border border-gray-600 rounded-lg hover:border-gray-400 focus:outline-none focus:ring focus:ring-green-500">-</button>
+                            <span id="qty-display" class="text-xl font-bold">1</span>
+                            <button onclick="updateQty(1)" class="w-10 h-10 border border-gray-600 rounded-lg hover:border-gray-400 focus:outline-none focus:ring focus:ring-green-500">+</button>
                             <span class="text-gray-400">24 remaining</span>
                         </div>
                     </div>
 
-                    <!-- Add to Cart -->
-                    <button onclick="addToCart()" class="w-full bg-green-500 hover:bg-green-600 py-4 rounded-xl font-bold text-lg transition mb-4">
-                        Add to Cart — £30
+                    <button onclick="addToCart()" class="w-full bg-green-500 hover:bg-green-600 py-4 rounded-xl font-bold text-lg transition transform hover:scale-105 mb-4 shadow-lg hover:shadow-2xl">
+                        Add to Cart — £<span id="add-to-cart-price">30</span>
                     </button>
 
                     <p class="text-center text-gray-500 text-sm">
@@ -121,11 +191,17 @@
                 </div>
             </div>
 
-            <!-- Cart Modal -->
             <div id="cart-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
                 <div class="bg-gray-800 rounded-2xl p-6 max-w-md w-full">
                     <h3 class="font-display text-2xl mb-4">Your Cart</h3>
                     <div id="cart-items" class="mb-4"></div>
+                    
+                    <!-- Email capture -->
+                    <div class="mb-4">
+                        <label class="block text-sm text-gray-400 mb-2">Your Email</label>
+                        <input type="email" id="customer-email" placeholder="you@example.com" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white">
+                    </div>
+                    
                     <div class="border-t border-gray-700 pt-4 mb-4">
                         <div class="flex justify-between text-xl font-bold">
                             <span>Total:</span>
@@ -141,16 +217,61 @@
                 </div>
             </div>
 
-            <!-- Details Tabs -->
             <div class="mt-16">
+                <h2 class="font-bold text-2xl mb-4">Frequently Asked Questions</h2>
+                <div class="border border-gray-700 rounded-lg overflow-hidden">
+                    <div class="border-b border-gray-700">
+                        <button class="w-full text-left p-4 bg-gray-800 hover:bg-gray-700 focus:outline-none" onclick="toggleFAQ(1)">
+                            What is NFC?
+                        </button>
+                        <div id="faq-1" class="hidden p-4 text-gray-400">
+                            NFC stands for Near Field Communication. It's a technology that allows devices to communicate when they are close to each other.
+                        </div>
+                    </div>
+                    <div class="border-b border-gray-700">
+                        <button class="w-full text-left p-4 bg-gray-800 hover:bg-gray-700 focus:outline-none" onclick="toggleFAQ(2)">
+                            How do I use the AI agent?
+                        </button>
+                        <div id="faq-2" class="hidden p-4 text-gray-400">
+                            Simply tap your NFC-enabled card to your smartphone to unlock the AI agent's features.
+                        </div>
+                    </div>
+                    <div class="border-b border-gray-700">
+                        <button class="w-full text-left p-4 bg-gray-800 hover:bg-gray-700 focus:outline-none" onclick="toggleFAQ(3)">
+                            What's the return policy?
+                        </button>
+                        <div id="faq-3" class="hidden p-4 text-gray-400">
+                            We accept returns within 30 days of purchase as long as the item is in original condition.
+                        </div>
+                    </div>
+                    <div class="border-b border-gray-700">
+                        <button class="w-full text-left p-4 bg-gray-800 hover:bg-gray-700 focus:outline-none" onclick="toggleFAQ(4)">
+                            How does shipping work?
+                        </button>
+                        <div id="faq-4" class="hidden p-4 text-gray-400">
+                            All orders are shipped within 2-3 business days. You will receive a tracking number once your order has shipped.
+                        </div>
+                    </div>
+                    <div class="border-b border-gray-700">
+                        <button class="w-full text-left p-4 bg-gray-800 hover:bg-gray-700 focus:outline-none" onclick="toggleFAQ(5)">
+                            Are these officially licensed?
+                        </button>
+                        <div id="faq-5" class="hidden p-4 text-gray-400">
+                            No - these are original fan art, not officially licensed. All artwork is created in-house and inspired by the players we scout. Same space as thousands of independent football artists on Etsy and at markets.
+                        </div>
+                    </div>
+                </div>
+            </div>
                 <div class="border-b border-gray-700">
                     <nav class="flex gap-8">
-                        <button class="border-b-2 border-green-500 pb-4 text-green-400">Details</button>
-                        <button class="border-b-2 border-transparent pb-4 text-gray-400 hover:text-white">AI Agent</button>
-                        <button class="border-b-2 border-transparent pb-4 text-gray-400 hover:text-white">Shipping</button>
+                        <button onclick="showTab('details')" id="tab-details" class="border-b-2 border-green-500 pb-4 text-green-400">Details</button>
+                        <button onclick="showTab('agent')" id="tab-agent" class="border-b-2 border-transparent pb-4 text-gray-400 hover:text-white">AI Agent</button>
+                        <button onclick="showTab('shipping')" id="tab-shipping" class="border-b-2 border-transparent pb-4 text-gray-400 hover:text-white">Shipping</button>
                     </nav>
                 </div>
-                <div class="py-8">
+                
+                <!-- Details Tab -->
+                <div id="content-details" class="py-8">
                     <h3 class="font-bold text-xl mb-4">Player Information</h3>
                     <div class="grid md:grid-cols-2 gap-6 text-gray-400">
                         <div>
@@ -165,11 +286,44 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- AI Agent Tab -->
+                <div id="content-agent" class="hidden py-8">
+                    <h3 class="font-bold text-xl mb-4">AI Scout Agent</h3>
+                    <p class="text-gray-400 mb-4">Tap your card to unlock your personal AI football scout.</p>
+                    <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="text-4xl">🤖</span>
+                            <div>
+                                <h4 class="font-bold">Ethan Nwaneri Agent</h4>
+                                <p class="text-gray-400 text-sm">Always-on scouting analysis</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <span class="text-gray-400">Mode:</span> Vault + Sidekick
+                            </div>
+                            <div>
+                                <span class="text-gray-400">Access:</span> Lifetime
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shipping Tab -->
+                <div id="content-shipping" class="hidden py-8">
+                    <h3 class="font-bold text-xl mb-4">Shipping Information</h3>
+                    <div class="space-y-4 text-gray-400">
+                        <p><span class="text-white">Free UK delivery</span> on all orders</p>
+                        <p>Cards are shipped within 2-3 business days</p>
+                        <p>Tracked delivery via Royal Mail</p>
+                        <p class="text-sm mt-4">For international shipping, contact us before ordering.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 px-4 border-t border-gray-800">
         <div class="max-w-7xl mx-auto text-center text-gray-500 text-sm">
             © 2026 Excuse to Football. All rights reserved.
@@ -177,19 +331,29 @@
     </footer>
 
     <script>
-        // Cart functionality
+        function toggleFAQ(faqNumber) {
+            const content = document.getElementById('faq-' + faqNumber);
+            content.classList.toggle('hidden');
+        }
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        let currentQty = 1;
         
         function updateCartCount() {
             const count = cart.reduce((sum, item) => sum + item.qty, 0);
             document.getElementById('cart-count').textContent = count;
         }
         
+        function updateQty(change) {
+            currentQty = Math.max(1, Math.min(24, currentQty + change));
+            document.getElementById('qty-display').textContent = currentQty;
+            document.getElementById('add-to-cart-price').textContent = currentQty * 30;
+        }
+        
         function addToCart() {
-            const product = { id: 'nwaneri-001', name: 'Ethan Nwaneri', price: 30, qty: 1 };
+            const product = { id: 'nwaneri-001', name: 'Ethan Nwaneri', price: 30, qty: currentQty };
             const existing = cart.find(item => item.id === product.id);
             if (existing) {
-                existing.qty++;
+                existing.qty += currentQty;
             } else {
                 cart.push(product);
             }
@@ -207,13 +371,16 @@
                 items.innerHTML = '<p class="text-gray-400 text-center py-4">Your cart is empty</p>';
                 total.textContent = '£0';
             } else {
-                items.innerHTML = cart.map(item => `
+                items.innerHTML = cart.map((item, index) => `
                     <div class="flex justify-between items-center py-2 border-b border-gray-700">
                         <div>
                             <p class="font-bold">${item.name}</p>
                             <p class="text-gray-400 text-sm">£${item.price} × ${item.qty}</p>
                         </div>
-                        <p class="font-bold">£${item.price * item.qty}</p>
+                        <div class="flex items-center gap-2">
+                            <p class="font-bold">£${item.price * item.qty}</p>
+                            <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 text-sm ml-2">✕</button>
+                        </div>
                     </div>
                 `).join('');
                 const sum = cart.reduce((total, item) => total + (item.price * item.qty), 0);
@@ -226,20 +393,83 @@
             document.getElementById('cart-modal').classList.add('hidden');
         }
         
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showCart();
+        }
+        
         function checkout() {
             if (cart.length === 0) {
                 alert('Your cart is empty!');
                 return;
             }
-            // Redirect to Stripe payment
+            
+            const email = document.getElementById('customer-email').value;
+            if (!email) {
+                alert('Please enter your email address!');
+                return;
+            }
+            
+            const sum = cart.reduce((total, item) => total + (item.price * item.qty), 0);
+            
+            // Save order to localStorage
+            const order = {
+                id: 'ORD-' + Date.now(),
+                items: cart.map(item => `${item.name} x${item.qty}`).join(', '),
+                total: sum,
+                email: email,
+                date: new Date().toLocaleString()
+            };
+            
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            orders.unshift(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+            
+            // Clear cart
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            
+            // Redirect to Stripe
             window.location.href = 'https://buy.stripe.com/5kQcN53umbov2Q7daU9MY00';
         }
         
-        // Cart button in nav
         document.querySelector('button:has-text("View Cart")').addEventListener('click', showCart);
         
-        // Initialize
         updateCartCount();
+        
+        // Tab switching
+        function showTab(tabName) {
+            document.querySelectorAll('#content-details, #content-agent, #content-shipping').forEach(content => {
+                content.classList.remove('fade'); // Remove fade class before hiding
+            });
+            document.querySelectorAll('#content-details, #content-agent, #content-shipping').forEach(content => {
+                content.classList.remove('fade'); // Remove fade class before hiding
+            });
+            // Hide all content
+            document.getElementById('content-details').classList.add('hidden');
+            document.getElementById('content-agent').classList.add('hidden');
+            document.getElementById('content-shipping').classList.add('hidden');
+            
+            // Reset all tab buttons
+            document.getElementById('tab-details').classList.remove('border-green-500', 'text-green-400');
+            document.getElementById('tab-details').classList.add('border-transparent', 'text-gray-400');
+            document.getElementById('tab-agent').classList.remove('border-green-500', 'text-green-400');
+            document.getElementById('tab-agent').classList.add('border-transparent', 'text-gray-400');
+            document.getElementById('tab-shipping').classList.remove('border-green-500', 'text-green-400');
+            document.getElementById('tab-shipping').classList.add('border-transparent', 'text-gray-400');
+            
+            // Show selected content
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            document.getElementById('content-' + tabName).classList.add('fade');
+            document.getElementById('content-' + tabName).classList.add('fade');
+            
+            // Highlight selected tab
+            document.getElementById('tab-' + tabName).classList.remove('border-transparent', 'text-gray-400');
+            document.getElementById('tab-' + tabName).classList.add('border-green-500', 'text-green-400');
+        }
     </script>
 </body>
 </html>
