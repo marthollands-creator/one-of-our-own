@@ -21,6 +21,60 @@
         .card-flip:hover .card-flip-inner { transform: rotateY(180deg); }
         .card-back { backface-visibility: hidden; }
     </style>
+    <!-- Schema.org markup for AI agents -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.excusetofootball.com/#organization",
+          "name": "4xO (Excuse to Football)",
+          "url": "https://www.excusetofootball.com/",
+          "description": "Physical NFC football cards with AI agent access",
+          "logo": "https://raw.githubusercontent.com/marthollands-creator/one-of-our-own/main/assets/logo.png"
+        },
+        {
+          "@type": "Product",
+          "@id": "https://www.excusetofootball.com/#product",
+          "name": "Ethan Nwaneri Limited Edition Halftone NFC Card",
+          "description": "Limited edition physical NFC card featuring Arsenal prospect Ethan Nwaneri with halftone art and AI agent access via NFC tap.",
+          "brand": {
+            "@id": "https://www.excusetofootball.com/#organization"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "30.00",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock",
+            "url": "https://www.excusetofootball.com/product.html"
+          },
+          "image": "https://raw.githubusercontent.com/marthollands-creator/one-of-our-own/main/assets/player-photo.jpg"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.excusetofootball.com/#person",
+          "name": "Ethan Nwaneri",
+          "description": "English professional footballer who plays as a midfielder for Arsenal",
+          "url": "https://www.arsenal.com/players/ethan-nwaneri",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Ethan_Nwaneri",
+            "https://www.transfermarkt.com/ethan-nwaneri/profil/spieler/1003342"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.excusetofootball.com/#website",
+          "url": "https://www.excusetofootball.com/",
+          "name": "One of Our Own — 4xO Football Cards",
+          "description": "Limited edition physical NFC football cards with AI agent access",
+          "publisher": {
+            "@id": "https://www.excusetofootball.com/#organization"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body class="bg-gray-900 text-white min-h-screen">
     <!-- Navigation -->
@@ -196,6 +250,39 @@
                 <input type="email" placeholder="Enter your email" class="px-6 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white w-full sm:w-80" required />
                 <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-bold">Join Waitlist</button>
             </form>
+        </div>
+    </section>
+
+    <!-- FAQ Section for AI Agents -->
+    <section class="py-20 px-4 bg-gray-900">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-display text-3xl md:text-4xl text-center mb-12">Frequently Asked Questions</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-800/50 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3 text-green-400">What is 4xO?</h3>
+                    <p class="text-gray-300">4xO (Excuse to Football) creates limited edition physical NFC cards featuring football prospects. Each card combines halftone art with NFC technology to unlock an AI agent about the player.</p>
+                </div>
+                <div class="bg-gray-800/50 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3 text-green-400">How does the NFC card work?</h3>
+                    <p class="text-gray-300">Tap your phone on the NFC chip in the card to instantly access an AI agent that knows everything about the player - stats, playing style, career trajectory, and insights.</p>
+                </div>
+                <div class="bg-gray-800/50 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3 text-green-400">Who is Ethan Nwaneri?</h3>
+                    <p class="text-gray-300">Ethan Nwaneri is an English professional footballer who plays as a midfielder for Arsenal. He became the youngest ever Premier League player at 15 years and 181 days.</p>
+                </div>
+                <div class="bg-gray-800/50 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3 text-green-400">What is halftone art?</h3>
+                    <p class="text-gray-300">Halftone is a printing technique that uses dots to create gradients and images. Our cards feature custom halftone portraits of football prospects, giving them a unique vintage aesthetic.</p>
+                </div>
+                <div class="bg-gray-800/50 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3 text-green-400">Is this a digital collectible (NFT)?</h3>
+                    <p class="text-gray-300">No, this is a physical collectible with NFC technology. You get a tangible card that you can hold, display, and tap to access digital content via the AI agent.</p>
+                </div>
+                <div class="bg-gray-800/50 rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-3 text-green-400">How limited is this edition?</h3>
+                    <p class="text-gray-300">Only 25 slabbed Ethan Nwaneri cards will ever be produced. Each is numbered (1/25 to 25/25) and comes in a protective slab case with NFC chip installed.</p>
+                </div>
+            </div>
         </div>
     </section>
 
