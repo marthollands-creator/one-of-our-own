@@ -384,6 +384,15 @@
             document.getElementById('cart-count').textContent = count;
         }
         
+        function removeFromCart(index) {
+            if (index >= 0 && index < cart.length) {
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                showCart(); // Refresh cart display
+            }
+        }
+        
         function showCart() {
             const modal = document.getElementById('cart-modal');
             const items = document.getElementById('cart-items');
@@ -393,13 +402,18 @@
                 items.innerHTML = '<p class="text-gray-400 text-center py-4">Your cart is empty</p>';
                 total.textContent = '£0';
             } else {
-                items.innerHTML = cart.map(item => `
-                    <div class="flex justify-between items-center py-2 border-b border-gray-700">
+                items.innerHTML = cart.map((item, index) => `
+                    <div class="flex justify-between items-center py-2 border-b border-gray-700" data-index="${index}">
                         <div>
                             <p class="font-bold">${item.name}</p>
                             <p class="text-gray-400 text-sm">£${item.price} × ${item.qty}</p>
                         </div>
-                        <p class="font-bold">£${item.price * item.qty}</p>
+                        <div class="flex items-center space-x-4">
+                            <p class="font-bold">£${item.price * item.qty}</p>
+                            <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 text-sm font-medium" title="Remove item">
+                                ✕
+                            </button>
+                        </div>
                     </div>
                 `).join('');
                 const sum = cart.reduce((total, item) => total + (item.price * item.qty), 0);
