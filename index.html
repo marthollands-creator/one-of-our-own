@@ -246,10 +246,24 @@
             <span class="text-green-400 text-sm tracking-widest uppercase mb-4 block">Early Access</span>
             <h2 class="font-display text-4xl mb-4">Batch 002 Coming Soon</h2>
             <p class="text-gray-400 mb-8">Be the first to know when the next wave drops. Limited slots available.</p>
-            <form class="flex flex-col sm:flex-row gap-4 justify-center" onsubmit="event.preventDefault(); const email=this.querySelector('input').value; if(email){alert('You\'re on the list! We\'ll notify you first.'); this.querySelector('input').value='';}">
-                <input type="email" placeholder="Enter your email" class="px-6 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white w-full sm:w-80" required />
-                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-bold">Join Waitlist</button>
-            </form>
+            <!-- Beehiiv Email Signup Form -->
+            <div id="beehiiv-embed" class="flex flex-col sm:flex-row gap-4 justify-center">
+                <!-- Placeholder - Replace with actual Beehiiv embed code -->
+                <div class="text-center p-6 bg-gray-800/50 rounded-2xl border border-gray-700">
+                    <p class="text-gray-300 mb-4">📬 <strong>Email signup connected to Beehiiv</strong></p>
+                    <p class="text-sm text-gray-400">
+                        Replace this div with your Beehiiv embed code from:<br>
+                        Settings → Grow → Forms → Get Embed Code
+                    </p>
+                    <div class="mt-4 p-4 bg-gray-900 rounded-lg border border-gray-800">
+                        <code class="text-xs text-gray-400">
+                            &lt;div data-beehiiv-form="YOUR-ID"&gt;&lt;/div&gt;<br>
+                            &lt;script src="https://embeds.beehiiv.com/embed.js"&gt;&lt;/script&gt;
+                        </code>
+                    </div>
+                </div>
+            </div>
+            <!-- End Beehiiv Form -->
         </div>
     </section>
 
@@ -327,15 +341,6 @@
     </div>
 
     <script>
-        document.getElementById('waitlist-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const email = document.getElementById('waitlist-email').value;
-            const waitlist = JSON.parse(localStorage.getItem('waitlist')) || [];
-            waitlist.push(email);
-            localStorage.setItem('waitlist', JSON.stringify(waitlist));
-            alert('Thank you for joining the waitlist!');
-            document.getElementById('waitlist-email').value = '';
-        });
         let cart = JSON.parse(localStorage.getItem('cart') || '[]');
         
         function updateCartCount() {
