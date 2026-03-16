@@ -114,7 +114,8 @@ tr:hover{background:var(--bg-elevated)}
 <div class="stats-grid">
 <div class="stat-card"><div class="stat-value" id="statTotal">0</div><div class="stat-label">Raw</div></div>
 <div class="stat-card"><div class="stat-value" id="statAdjusted">0</div><div class="stat-label">Adjusted</div></div>
-<div class="stat-card"><div class="stat-value" id="statGrade">-</div><div class="stat-label">Grade</div></div>
+<div class="stat-card"><div class="stat-value" id="statGrade">-</div><div class="stat-label">Local Grade</div></div>
+<div class="stat-card"><div class="stat-value" id="statWorldGrade">-</div><div class="stat-label">World Grade</div></div>
 </div>
 </div>
 <div class="tab-content" id="tab-metrics">
@@ -142,7 +143,7 @@ tr:hover{background:var(--bg-elevated)}
 <div class="form-group"><label>Age</label><input type="number" id="inputAge"></div>
 <div class="form-group"><label>Position</label><select id="inputPosition"><option value="CM">CM</option><option value="CAM">CAM</option><option value="CDM">CDM</option><option value="LW">LW</option><option value="RW">RW</option><option value="ST">ST</option><option value="CB">CB</option><option value="GK">GK</option></select></div>
 <div class="form-group"><label>Academy?</label><select id="inputOOO"><option value="yes">Yes</option><option value="no">No</option></select></div>
-<div class="form-group"><label>Tier</label><select id="inputLeague"><option value="1">Tier 1</option><option value="2">Tier 2</option><option value="3">Tier 3</option><option value="4">Tier 4</option><option value="5">Tier 5</option></select></div>
+<div class="form-group"><label>Tier</label><select id="inputLeague"><option value="1">🏆 Tier 1 - Premier League, La Liga, Serie A, Bundesliga</option><option value="2">🥈 Tier 2 - Ligue 1, Championship, Primeira, Eredivisie</option><option value="3">🥉 Tier 3 - League One/Two, 2.Bundesliga, Ligue 2</option><option value="4">🎯 Tier 4 - National League, Conference, Serie B</option><option value="5">⭐ Tier 5 - Youth Leagues, Academy</option></select></div>
 </div>
 </div>
 <div class="form-section"><div class="form-section-title">Ground</div><div class="form-grid">
@@ -200,24 +201,40 @@ tr:hover{background:var(--bg-elevated)}
 </div>
 <script>
 // TIER GRADE COLORS - single global definition
-const TIER_COLORS = {
-    '1': { color: '#ffd700', name: 'Gold' },
-    '2': { color: '#c0c0c0', name: 'Silver' },
-    '3': { color: '#b87333', name: 'Bronze' },
-    '4': { color: '#a855f7', name: 'Purple' },
-    '5': { color: '#14b8a6', name: 'Teal' }
+const TIER_INFO = {
+    '1': { color: '#ffd700', name: 'Premier', leagues: ['Premier League', 'La Liga', 'Serie A', 'Bundesliga'], multiplier: 1.0 },
+    '2': { color: '#c0c0c0', name: 'Championship', leagues: ['Ligue 1', 'Championship', 'Primeira Liga', 'Eredivisie'], multiplier: 0.85 },
+    '3': { color: '#b87333', name: 'League One', leagues: ['League One', 'League Two', '2.Bundesliga', 'Ligue 2'], multiplier: 0.70 },
+    '4': { color: '#a855f7', name: 'Non-League', leagues: ['National League', 'Conference', 'Serie B'], multiplier: 0.55 },
+    '5': { color: '#14b8a6', name: 'Youth', leagues: ['Youth League', 'U21', 'U19', 'Academy'], multiplier: 0.40 }
 };
+const TIER_COLORS = TIER_INFO;
 
-function getGrade(score, tier) {
-    let grade;
-    if(score >= 90) grade = 'S';
-    else if(score >= 80) grade = 'A';
-    else if(score >= 70) grade = 'B';
-    else if(score >= 60) grade = 'C';
-    else if(score >= 50) grade = 'D';
-    else grade = 'F';
-    const t = TIER_COLORS[tier] || TIER_COLORS['1'];
+function getGrade(score) {
+    if(score >= 90) return 'S';
+    else if(score >= 80) return 'A';
+    else if(score >= 70) return 'B';
+    else if(score >= 60) return 'C';
+    else if(score >= 50) return 'D';
+    else return 'F';
+}
+
+function getGradeObj(score, tier) {
+    const grade = getGrade(score);
+    const t = TIER_INFO[tier] || TIER_INFO['1'];
     return { grade: grade, color: t.color, name: t.name + ' ' + grade };
+}
+
+function getWorldGrade(score) {
+    const grade = getGrade(score);
+    // Determine world tier color based on score ranges
+    let color, name;
+    if(score >= 90) { color = '#ffd700'; name = 'World S'; }
+    else if(score >= 80) { color = '#c0c0c0'; name = 'World A'; }
+    else if(score >= 70) { color = '#b87333'; name = 'World B'; }
+    else if(score >= 60) { color = '#a855f7'; name = 'World C'; }
+    else { color = '#14b8a6'; name = 'World D'; }
+    return { grade: grade, color: color, name: name };
 }
 
 const WEIGHTS = {
@@ -270,11 +287,14 @@ function renderPlayerList() {
     if(filtered.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:40px;color:#888">No players. Click + Add Player</td></tr>'; return; }
     filtered.sort((a,b) => (b.rings.adjusted || b.rings.total) - (a.rings.adjusted || a.rings.total)).forEach(p => {
         const tier = p.league || '1';
-        const adjScore = p.rings.adjusted || p.rings.total;
-        const gradeObj = getGrade(adjScore, tier);
+        const localScore = p.rings.total || 0;
+        const worldScore = p.rings.adjusted || localScore;
+        const localGrade = getGradeObj(localScore, tier);
+        const worldGrade = getWorldGrade(worldScore);
+        const tierInfo = TIER_INFO[tier];
         const row = document.createElement('tr');
         row.onclick = () => selectPlayer(p.id);
-        row.innerHTML = `<td><b>${p.name}</b></td><td style="color:#888">${p.club}</td><td>${p.age}</td><td>${p.position}</td><td style="color:${TIER_COLORS[tier].color}">T${tier}</td><td><span class="score-badge" style="background:${gradeObj.color};color:#000">${gradeObj.grade}</span></td>`;
+        row.innerHTML = `<td><b>${p.name}</b></td><td style="color:#888">${p.club}</td><td>${p.age}</td><td>${p.position}</td><td style="color:${tierInfo.color}" title="${tierInfo.leagues.join(', ')}">T${tier}</td><td><span class="score-badge" style="background:${localGrade.color};color:#000" title="Local: ${localGrade.name}">${localGrade.grade}</span><span class="score-badge" style="background:${worldGrade.color};color:#000;margin-left:4px" title="World: ${worldGrade.name}">W${worldGrade.grade}</span></td>`;
         tbody.appendChild(row);
     });
 }
@@ -287,7 +307,9 @@ function selectPlayer(id) {
     document.getElementById('detailAvatar').textContent = getInitials(p.name);
     document.getElementById('detailName').textContent = p.name;
     const tier = p.league || '1';
-    document.getElementById('detailMeta').textContent = `${p.club} | ${p.age} | ${p.position}`;
+    const tierInfo = TIER_INFO[tier];
+    document.getElementById('detailMeta').innerHTML = `${p.club} | ${p.age} | ${p.position} | <span style="color:${tierInfo.color}">${tierInfo.name}</span>`;
+    document.getElementById('detailAvatar').style.borderColor = tierInfo.color;
     const rings = p.rings;
     document.getElementById('scoreGround').textContent = rings.ground;
     document.getElementById('scoreWater').textContent = rings.water;
@@ -296,8 +318,10 @@ function selectPlayer(id) {
     document.getElementById('scoreVoid').textContent = rings.void;
     document.getElementById('statTotal').textContent = rings.total;
     document.getElementById('statAdjusted').textContent = rings.adjusted || rings.total;
-    const gradeObj = getGrade(rings.total, tier);
-    document.getElementById('statGrade').textContent = gradeObj.name;
+    const localGrade = getGradeObj(rings.total, tier);
+    const worldGrade = getWorldGrade(rings.adjusted || rings.total);
+    document.getElementById('statGrade').textContent = localGrade.name;
+    document.getElementById('statWorldGrade').textContent = worldGrade.name;
     renderRadarChart(rings);
     renderMetrics(p.metrics);
     renderPlayerList();
