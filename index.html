@@ -265,25 +265,40 @@
                             
                             <!-- Beehiiv Embed -->
                             <div id="beehiiv-embed-container" class="hidden">
-                                <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-                                <iframe 
-                                    src="https://subscribe-forms.beehiiv.com/42bbf60a-ac1c-435e-946f-a696a0efd0d3" 
-                                    class="beehiiv-embed" 
-                                    data-test-id="beehiiv-embed" 
-                                    frameborder="0" 
-                                    scrolling="no" 
-                                    style="
-                                        width: 560px; 
-                                        height: 319px; 
-                                        margin: 0; 
-                                        border-radius: 0px 0px 0px 0px !important; 
-                                        background-color: transparent; 
-                                        box-shadow: 0 0 #0000; 
-                                        max-width: 100%;
-                                    "
+                                <!-- Beehiiv JavaScript Embed (More customizable) -->
+                                <div 
+                                    id="beehiiv-form"
+                                    data-beehiiv-form="42bbf60a-ac1c-435e-946f-a696a0efd0d3"
+                                    data-beehiiv-type="embed"
+                                    data-background-color="#1a202c"
+                                    data-text-color="#ffffff"
+                                    data-button-color="#00FF87"
+                                    data-button-text-color="#000000"
+                                ></div>
+                                <script async src="https://embeds.beehiiv.com/embed.js" 
                                     onload="document.getElementById('beehiiv-loading').classList.add('hidden'); document.getElementById('beehiiv-embed-container').classList.remove('hidden');"
                                     onerror="document.getElementById('beehiiv-loading').innerHTML = '<p class=\"text-red-400\">Failed to load form. Please try again or <a href=\'https://excusetofootball.beehiiv.com/subscribe\' class=\"underline\">subscribe directly</a>.</p>';"
-                                ></iframe>
+                                ></script>
+                                
+                                <!-- Fallback if JavaScript embed fails -->
+                                <noscript>
+                                    <iframe 
+                                        src="https://subscribe-forms.beehiiv.com/42bbf60a-ac1c-435e-946f-a696a0efd0d3" 
+                                        class="beehiiv-embed" 
+                                        data-test-id="beehiiv-embed" 
+                                        frameborder="0" 
+                                        scrolling="no" 
+                                        style="
+                                            width: 560px; 
+                                            height: 319px; 
+                                            margin: 0; 
+                                            border-radius: 0px 0px 0px 0px !important; 
+                                            background-color: transparent; 
+                                            box-shadow: 0 0 #0000; 
+                                            max-width: 100%;
+                                        "
+                                    ></iframe>
+                                </noscript>
                             </div>
                             
                             <!-- Fallback Link -->
